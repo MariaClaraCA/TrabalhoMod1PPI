@@ -24,7 +24,7 @@ app.use(session({
 app.post('/login', (requisicao, resposta)=>{
     const usuario = requisicao.body.usuario;
     const senha   = requisicao.body.senha;
-    if (usuario && senha && usuario === 'mariaclara@gmail.com' && senha === '123'){
+    if (usuario && senha && usuario === 'Maria Clara' && senha === '123'){
         requisicao.session.usuarioLogado = true;
         resposta.redirect('/conteudo.html');
     }
