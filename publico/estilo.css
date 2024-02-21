@@ -61,6 +61,6 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Para cobrir toda a tela */
-    z-index: -1; /* Garante que a imagem de fundo esteja atrás do conteúdo */
+    object-fit: cover;
+    z-index: -1;
 }
