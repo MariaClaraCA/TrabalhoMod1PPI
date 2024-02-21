@@ -20,6 +20,10 @@ h3 {
     font-family: monospace;
     font-size: 57px;
 }
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 57px;
+}
 .ceu {
    background-color: rgb(120, 198, 239);
 }
