@@ -1,9 +1,24 @@
 /* Estilização básica */
 
 body {
+   
     font-family: cursive;
     margin: 0;
     padding: 0;
+}
+.fundo1{
+    background-size: cover;
+    background-position: center;
+    background-image: url('ceuazul2.jpeg');
+}
+.fundo2{
+    background-size: cover;
+    background-position: center;
+    background-image: url('ceunoite3.jpeg');
+}
+h3 {
+    font-family: monospace;
+    font-size: 57px;
 }
 .ceu {
    background-color: rgb(120, 198, 239);
