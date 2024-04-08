@@ -5,7 +5,7 @@ import session from 'express-session';
 import autenticar from './seguranca/autenticar.js';
 
 const host = 'localhost';
-const porta = 3000;
+const porta = 4000;
 
 const app = express();
 

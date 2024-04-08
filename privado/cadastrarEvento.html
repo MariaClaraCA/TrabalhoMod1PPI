@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Eventos</title>
+    <style>
+        body {
+            background-image: url('papelparede.jpg');
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="date"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Eventos</h1>
+        <form id="eventForm">
+            <label for="eventName">Nome do Evento:</label>
+            <input type="text" id="eventName" name="eventName" required>
+            
+            <label for="eventDate">Data e Hora:</label>
+            <input type="datetime-local" id="eventDate" name="eventDate" required>
+            
+            <label for="eventLocation">Local do Evento:</label>
+            <input type="text" id="eventLocation" name="eventLocation" required>
+            
+            <label for="ticketPrice">Preço do Ingresso:</label>
+            <input type="number" id="ticketPrice" name="ticketPrice" required>
+            
+            <label for="ticketQuantity">Quantidade de Ingressos:</label>
+            <input type="number" id="ticketQuantity" name="ticketQuantity" required>
+
+            <button type="button" onclick="cadastrarEvento()">Cadastrar</button>
+            <button type="button" onclick="atualizarEvento()">Atualizar</button>
+            <button type="button" onclick="excluirEvento()">Excluir</button>
+        </form>
+        <button onclick="window.history.back()">Voltar</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function showMessage(message) {
+            document.getElementById('message').textContent = message;
+        }
+
+        function cadastrarEvento() {
+            showMessage('Cadastro realizado com sucesso!');
+        }
+
+        function atualizarEvento() {
+            showMessage('Evento atualizado com sucesso!');
+        }
+
+        function excluirEvento() {
+            showMessage('Evento excluído com sucesso!');
+        }
+    </script>
+    <div class="container">
+        <h1>Cadastro de Eventos</h1>
+        <form id="eventForm">
+            <!-- Campos do formulário aqui -->
+            <button type="button" onclick="cadastrarEvento()">Cadastrar</button>
+            <button type="button" onclick="atualizarEvento()">Atualizar</button>
+            <button type="button" onclick="excluirEvento()">Excluir</button>
+        </form>
+        <hr>
+        <h2>Eventos Cadastrados</h2>
+        <table id="eventTable">
+            <thead>
+                <tr>
+                    <th>Nome do Evento</th>
+                    <th>Data e Hora</th>
+                    <th>Local</th>
+                    <th>Preço</th>
+                    <th>Ingressos Disponíveis</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="eventList">
+                <!-- Aqui serão adicionados os eventos dinamicamente -->
+            </tbody>
+        </table>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        let eventos = []; // Array para armazenar os eventos cadastrados
+
+        function cadastrarEvento() {
+            // Obter os valores do formulário
+            let eventName = document.getElementById('eventName').value;
+            let eventDate = document.getElementById('eventDate').value;
+            let eventLocation = document.getElementById('eventLocation').value;
+            let ticketPrice = document.getElementById('ticketPrice').value;
+            let ticketQuantity = document.getElementById('ticketQuantity').value;
+
+            // Criar um objeto com os dados do evento
+            let novoEvento = {
+                nome: eventName,
+                data: eventDate,
+                local: eventLocation,
+                preco: ticketPrice,
+                ingressos: ticketQuantity
+            };
+
+            // Adicionar o evento ao array de eventos
+            eventos.push(novoEvento);
+
+            // Limpar o formulário
+            document.getElementById('eventForm').reset();
+
+            // Atualizar a tabela de eventos
+            atualizarTabelaEventos();
+        }
+
+        function atualizarTabelaEventos() {
+            let tableBody = document.getElementById('eventList');
+            tableBody.innerHTML = ''; // Limpar a tabela
+
+            eventos.forEach((evento, index) => {
+                let row = tableBody.insertRow();
+                let cellNome = row.insertCell(0);
+                let cellData = row.insertCell(1);
+                let cellLocal = row.insertCell(2);
+                let cellPreco = row.insertCell(3);
+                let cellIngressos = row.insertCell(4);
+                let cellAcoes = row.insertCell(5);
+
+                cellNome.textContent = evento.nome;
+                cellData.textContent = evento.data;
+                cellLocal.textContent = evento.local;
+                cellPreco.textContent = evento.preco;
+                cellIngressos.textContent = evento.ingressos;
+
+                // Botões de ação (Atualizar e Excluir)
+                let btnAtualizar = document.createElement('button');
+                btnAtualizar.textContent = 'Atualizar';
+                btnAtualizar.onclick = function() {
+                    atualizarEvento(index);
+                };
+
+                let btnExcluir = document.createElement('button');
+                btnExcluir.textContent = 'Excluir';
+                btnExcluir.onclick = function() {
+                    excluirEvento(index);
+                };
+
+                cellAcoes.appendChild(btnAtualizar);
+                cellAcoes.appendChild(btnExcluir);
+            });
+        }
+
+        function atualizarEvento(index) {
+            // Aqui você pode implementar a lógica para atualizar um evento
+            showMessage('Função de atualizar evento ainda não implementada!');
+        }
+
+        function excluirEvento(index) {
+            eventos.splice(index, 1); // Remove o evento do array pelo índice
+            atualizarTabelaEventos(); // Atualiza a tabela após a exclusão
+            showMessage('Evento excluído com sucesso!');
+        }
+
+        function showMessage(message) {
+            document.getElementById('message').textContent = message;
+        }
+
+        // Chamada inicial para mostrar eventos existentes, se houver
+        atualizarTabelaEventos();
+    </script>
+</body>
+</html>
